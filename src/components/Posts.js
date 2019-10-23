@@ -1,12 +1,47 @@
 import React, { Component } from 'react';
-import Post from './Post';
+import InstaService from '../services/instaService';
 
 export default class Posts extends Component {
+  InstaService = new InstaService();
+
+  state = {
+    posts: [],
+    error: false
+  }
+
+  updatePosts() {
+    this.InstaService.getAllPosts()
+    .then(this.onPostsLoaded)
+    .catch(this.onError);
+  }
+
+  onPostsLoaded = (posts) => {
+    this.setState(
+      {
+        posts,
+        error: false
+      }      
+    );
+    //test
+    console.log(this.state.posts);
+  }
+
+  onError = (err) => {
+    this.setState(
+      {     
+        error: true
+      }
+    );
+  }
+
+  componentDidMount() {
+    this.updatePosts();
+  }
+
   render() {
     return (
       <div className="left">
-        <Post src="https://secure.i.telegraph.co.uk/multimedia/archive/03523/Cat-Photo-Bombs-fa_3523609b.jpg" alt="cat1" />
-        <Post src="http://allaboutcat.org/wp-content/uploads/2015/12/Cat-Scottish-Fold-6.jpg" alt="cat2" />        
+        
       </div>
     )
   }
