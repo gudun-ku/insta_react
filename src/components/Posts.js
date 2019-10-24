@@ -25,7 +25,7 @@ export default class Posts extends Component {
       }      
     );
     //test
-    console.log(this.state.posts);
+    //console.log(this.state.posts);
   }
 
   onError = (err) => {
@@ -43,7 +43,7 @@ export default class Posts extends Component {
   renderItems(arr) {
     return arr.map(item => {      
       return (
-        <Post item={item}/>
+        <Post key={item.id} item={item}/>
       );     
     });
   }

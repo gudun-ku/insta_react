@@ -4,7 +4,7 @@ import Users from './Users';
 
 export default function Feed() {
   return (
-    <div className="container feed">
+    <div key="1" className="container feed">
       <Posts />
       <Users />
     </div>
